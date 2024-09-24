@@ -77,7 +77,7 @@ export default class SearchBar extends Component {
 
     try {
       const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/find?q=${cityName}&appid=${this.token}&units=metric`
+        `https://api.openweathermap.org/data/2.5/find?q=${cityName}&appid=${this.token}`
       );
       const data = await response.json();
 
@@ -93,6 +93,10 @@ export default class SearchBar extends Component {
           cityDiv.onclick = () => {
             this.setState({ selectedCityId: cidade.id });
             this.props.onCitySelect(cidade.id);
+            if (document.getElementById("cidades-encontradas").style.display === "flex") {  
+              document.getElementById("cidades-encontradas").style.display = "none";
+              this.setState({ cityName: "", cidades: [] });
+            }
           };
 
           cityDiv.innerHTML = `
@@ -110,22 +114,6 @@ export default class SearchBar extends Component {
       this.setState({ error: "Erro ao buscar os dados da cidade" });
     }
   };
-
-  /*fetchWeatherData = async (cityId) => {
-    try {
-      const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?id=${cityId}&appid=${this.token}&units=metric`
-      );
-      const data = await response.json();
-      if (data.cod !== 200) {
-        console.error("Erro ao buscar os dados do clima:", data.message);
-      } else {
-        console.log("Dados do clima:", data);
-      }
-    } catch (error) {
-      console.error("Erro ao buscar os dados do clima", error);
-    }
-  };*/
 
   handleSearch = () => {
     this.fetchCityData();

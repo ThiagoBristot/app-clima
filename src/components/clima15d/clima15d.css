@@ -58,16 +58,20 @@
 .temperatura15 {
     display: flex;
     justify-content: start;
+    gap: 15px;
+    align-items: center;
+    font-size: 18px;
+    color: black;
+}
+
+.temperaturaexpandido {
+    display: flex;
+    justify-content: start;
     align-items: center;
     flex-direction: column;
     gap: 0;
     font-size: 18px;
     color: black;
-}
-
-.temperatura15 .min, .temperatura15 .max {
-    position: relative;
-    margin-right: auto;
 }
 
 .chuva {
@@ -92,6 +96,8 @@
     flex-direction: column;
     width: 100%;
     height: auto;
+    border: 1px solid black;
+    margin-bottom: 1%;
 }
 
 .dia-previsao ul {
@@ -99,7 +105,7 @@
     justify-content: space-between;
     align-items: center;
     max-width: 100%;
-    max-height: 0;
+    gap: 10px;
     overflow: hidden;
     transition: max-height 0.3s ease-in-out;
 }
@@ -110,4 +116,13 @@
 
 .datadia, .tituloprev5d{
     color: black;
+}
+
+.dia-previsao:hover {
+    background-color: rgb(212, 232, 237);
+}
+
+.temp {
+    position: relative;
+    right: 15%;
 }

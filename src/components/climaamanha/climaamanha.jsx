@@ -8,7 +8,7 @@ export default class ClimaAmanha extends Component {
     this.state = {
       data: null,
       error: null,
-      showTempChart: true, // Estado para alternar entre gráficos
+      showTempChart: true,
     };
 
     this.token = '4d0054ae2de00b7cc66c50e704c82d2f';
@@ -88,17 +88,11 @@ export default class ClimaAmanha extends Component {
   renderCharts = () => {
     const { temperatures, timeLabels, precipitationData } = this.state.data;
 
-    // Verifique os dados
-    console.log('Temperatures:', temperatures);
-    console.log('TimeLabels:', timeLabels);
-    console.log('PrecipitationData:', precipitationData);
-
     // Verifique as referências dos canvas
     const tempCanvas = this.tempChartRef.current;
     const precipCanvas = this.precipitationChartRef.current;
 
     console.log('Temp Canvas:', tempCanvas);
-    console.log('Precipitation Canvas:', precipCanvas);
 
     // Apenas renderiza gráficos se os canvas estiverem disponíveis
     if (!tempCanvas && !precipCanvas) {
@@ -151,47 +145,6 @@ export default class ClimaAmanha extends Component {
         },
       });
     }
-
-    if (ctxPrecipitation && !this.state.showTempChart) {
-      // Gráfico de Precipitação
-      this.precipitationChart = new Chart(ctxPrecipitation, {
-        type: 'bar',
-        data: {
-          labels: timeLabels,
-          datasets: [
-            {
-              label: 'Precipitação (mm)',
-              data: precipitationData,
-              backgroundColor: 'rgba(54, 162, 235, 0.5)',
-              borderColor: 'rgba(54, 162, 235, 1)',
-              borderWidth: 1,
-            },
-          ],
-        },
-        options: {
-          scales: {
-            x: {
-              title: {
-                display: true,
-                text: 'Hora',
-              },
-            },
-            y: {
-              title: {
-                display: true,
-                text: 'Precipitação (mm)',
-              },
-            },
-          },
-        },
-      });
-    }
-  };
-
-  toggleChart = () => {
-    this.setState((prevState) => ({
-      showTempChart: !prevState.showTempChart,
-    }), this.renderCharts); // Redesenha os gráficos após alterar o estado
   };
 
   render() {
@@ -212,7 +165,6 @@ export default class ClimaAmanha extends Component {
         <div className="climaamanha-content">
           <div className="temperaturaminamanha">Máx: {data.maxTemp}°C</div>
           <div className="temperaturamaxamanha">Mín: {data.minTemp}°C</div>
-          <div className="precipitacaoamanha">Precipitação total: {data.totalPrecipitation.toFixed(2)} mm</div>
         </div>
           <div className="imagemamanha">
             {/* Adicionar ícone do clima */}
@@ -221,14 +173,7 @@ export default class ClimaAmanha extends Component {
             />
           </div>
         <div>
-          <button className="toggle-chart-btn" onClick={this.toggleChart}>
-            {showTempChart ? "Mostrar Gráfico de Precipitação" : "Mostrar Gráfico de Temperatura"}
-          </button>
-          {showTempChart ? (
-            <canvas ref={this.tempChartRef} id="tempChart" width="400" height="200"/>
-          ) : (
-            <canvas ref={this.precipitationChartRef} id="precipitationChart" width="400" height="200"/>
-          )}
+          <canvas ref={this.tempChartRef} id="tempChart" width="400" height="200"/>
         </div>
       </section>
     );

@@ -22,6 +22,9 @@ export default class BarraTempo extends Component {
   // Atualiza o estado com a cidade selecionada do SearchBar
   handleCitySelect = (cityId) => {
     this.setState({ selectedCityId: cityId });
+
+    // Atualiza o componente atual para ClimaHoje ao selecionar uma cidade
+    this.handleClick(<ClimaHoje cityId={cityId} />);
   };
 
   render() {
@@ -30,7 +33,6 @@ export default class BarraTempo extends Component {
     return (
       <div>
         <SearchBar onCitySelect={this.handleCitySelect} />
-
         <ul className="barratempo">
           <li onClick={() => this.handleClick(<ClimaHoje cityId={selectedCityId} />)}>Hoje</li>
           <li onClick={() => this.handleClick(<ClimaAmanha cityId={selectedCityId} />)}>Amanhã</li>

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Chart from "chart.js/auto";
 import "./climahoje.css";
 
 export default class ClimaHoje extends Component {

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./clima15d.css";
 import { FaArrowDown } from "react-icons/fa";
 import { FaArrowUp } from "react-icons/fa";
-import { FaDroplet } from "react-icons/fa6";
+import { FaThermometerHalf } from "react-icons/fa";
 
 export default class Clima5d extends Component {
   constructor(props) {
@@ -71,14 +71,36 @@ export default class Clima5d extends Component {
     return agrupadas;
   };
 
-  // Função para calcular a média das temperaturas máximas e mínimas do dia
-  calcularMediaTemperaturas = (dia) => {
-    const totalMax = dia.reduce((acc, previsao) => acc + previsao.main.temp_max, 0);
-    const totalMin = dia.reduce((acc, previsao) => acc + previsao.main.temp_min, 0);
+  // Função para calcular a média das temperaturas máximas e mínimas do dia, além da maior máxima e menor mínima
+  calcularMediaETemperaturasExtremas = (dia) => {
+    let totalMax = 0;
+    let totalMin = 0;
+    let maiorMax = -Infinity; // Inicializando com um valor muito baixo
+    let menorMin = Infinity;  // Inicializando com um valor muito alto
+
+    dia.forEach(previsao => {
+      const tempMax = previsao.main.temp_max;
+      const tempMin = previsao.main.temp_min;
+
+      // Acumula os valores para o cálculo das médias
+      totalMax += tempMax;
+      totalMin += tempMin;
+
+      // Compara para encontrar a maior temperatura máxima e a menor temperatura mínima
+      if (tempMax > maiorMax) {
+        maiorMax = tempMax;
+      }
+      if (tempMin < menorMin) {
+        menorMin = tempMin;
+      }
+    });
+
+    // Calcula as médias
     const mediaMax = totalMax / dia.length;
     const mediaMin = totalMin / dia.length;
 
-    return { mediaMax, mediaMin };
+    // Retorna as médias e as temperaturas extremas
+    return { mediaMax, mediaMin, maiorMax, menorMin };
   };
 
   // Função para lidar com o clique e expandir/recolher o dia
@@ -150,7 +172,7 @@ export default class Clima5d extends Component {
       <section id="clima15" className="clima15">
         <h2 className="tituloprev5d">Previsão de 5 dias em {cidadeNome}:</h2>
         {previsao5d.map((dia, index) => {
-          const { mediaMax, mediaMin } = this.calcularMediaTemperaturas(dia);
+          const { mediaMax, mediaMin, maiorMax, menorMin } = this.calcularMediaETemperaturasExtremas(dia);
           const isExpandido = diasExpandido.includes(index); // Verifica se o dia está expandido
   
           return (
@@ -162,11 +184,11 @@ export default class Clima5d extends Component {
               >
                 <h3 className="datadia">Previsão de {new Date(dia[0].dt * 1000).toLocaleDateString()} em {cidadeNome}:</h3>
                 <div className="temperatura15">
-                  <p className="min">
-                    <FaArrowDown /> {mediaMin.toFixed(1)}°C
-                  </p>
                   <p className="max">
-                    <FaArrowUp /> {mediaMax.toFixed(1)}°C
+                    <FaArrowUp /> {maiorMax.toFixed(1)}°C
+                  </p>
+                  <p className="min">
+                    <FaArrowDown /> {menorMin.toFixed(1)}°C
                   </p>
                 </div>
   
@@ -175,8 +197,7 @@ export default class Clima5d extends Component {
                   <ul>
                     {dia.map((previsao, subIndex) => {
                       const diadata = new Date(previsao.dt * 1000).toLocaleTimeString().substring(0, 5);
-                      const temperaturaMax = previsao.main.temp_max || "N/A";
-                      const temperaturaMin = previsao.main.temp_min || "N/A";
+                      const temp = previsao.main.temp;
                       const estado = previsao.weather?.[0]?.description || "Sem informação";
                       const icone = `http://openweathermap.org/img/wn/${previsao.weather?.[0]?.icon || '01d'}@2x.png`;
                       return (
@@ -189,12 +210,9 @@ export default class Clima5d extends Component {
                               <img src={icone} alt={estado} />
                             </div>
                           </div>
-                          <div className="temperatura15">
-                            <p className="min">
-                              <FaArrowDown /> {temperaturaMin}°C
-                            </p>
-                            <p className="max">
-                              <FaArrowUp /> {temperaturaMax}°C
+                          <div className="temperaturaexpandido">
+                            <p className="temp">
+                              <FaThermometerHalf /> {temp}°C
                             </p>
                           </div>
                         </li>

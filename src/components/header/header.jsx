@@ -17,8 +17,6 @@ export default class Header extends Component {
       document.body.style.backgroundColor = this.state.darkMode ? "#021526" : "#7FA1C3";
       document.body.style.color = this.state.darkMode ? "#D1D1D1" : "#000";
       document.getElementById("header").style.backgroundColor = this.state.darkMode ? "#03346E" : "#6482AD"
-      document.getElementById("sidebar").style.backgroundColor = this.state.darkMode ? "#2C2C2E" : "#F5EDED";
-      document.getElementById("sidebar").style.color = this.state.darkMode ? "#D1D1D1" : "#000";
       document.getElementById("submit").style.color = this.state.darkMode ? "#D1D1D1" : "#000";
     });
 
