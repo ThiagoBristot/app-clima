@@ -1,0 +1,95 @@
+.climahoje {
+    margin-top: 2%;
+    background-color: #F5EDED;
+    border: 2px solid #ccc;
+    border-radius: 15px;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    margin-left: 25%;
+    margin-right: 25%;
+    max-width: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.tituloclima {
+    position: relative;
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+    text-align: center;
+    width: 100%;
+}
+
+.climahoje-imagem {    
+    position: relative;
+    right: 35%;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imagem {
+    width: fit-content;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.climahoje-content {
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    bottom: 50px;
+}
+
+.temperaturahoje, .feelslikehoje {
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+
+}
+
+.feelslikehoje {
+    position: relative;
+}
+
+.mudatemphoje {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    font-size: 16px;
+    margin-left: 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    position: absolute;
+    left: 20%;
+}
+
+.mudatemphoje:hover {
+    background-color: #45a049;
+}
+
+.estadohoje {
+    font-size: 28px;
+    margin-top: 10px;
+    position: relative;
+    bottom: 20%;
+}
+
+.loading {
+    font-size: 24px;
+    font-style: bold;
+    position: relative;
+    left: 38%;
+}
+

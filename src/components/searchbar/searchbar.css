@@ -1,0 +1,131 @@
+.searchbar {
+    margin-bottom: 1%;
+    margin-top: 1%;
+    max-width: 60%;
+    display: flex;
+    justify-content: start;
+    gap: 5px;
+    position: relative;
+    left: 32%;
+}
+
+.searchbar input {
+    width: 45%;
+    position: relative;
+    font-size: medium;
+    border-radius: 20px;
+    background-color: #F7F7F8;
+}
+
+.submitpesquisa {
+    margin: 3px;
+    width: auto;
+    font-size: 2em;
+    border: 0;
+    background-color: transparent;
+}
+
+.submitpesquisa :hover {
+    transform: scale(1.09);
+    cursor: pointer;
+    color: #073380;
+}
+
+.locatual {
+    width: 3em;
+    height: auto;
+    cursor: pointer;
+}
+
+.locatual :hover {
+    transform: scale(1.05);
+    color: red;
+}
+
+.LocAtual {
+    width: auto;
+    height: auto;
+}
+
+.tooltip {
+    visibility: hidden;
+    width: 160px;
+    padding: 5px;
+    border-radius: 5px;
+    position: fixed;
+    left: 18%;
+    top: 8%;
+    color: black;
+    margin-bottom: 10px;
+    transition: opacity 0.3s;
+    text-align: center;
+    box-shadow: 1px;
+    background-color: white;
+}
+  
+.LocAtual:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+.LocAtual:hover .locatual {
+    transform: scale(1.1);
+}
+
+#cidades-encontradas {
+    position: absolute;
+    top: 99%;
+    left: 14%;
+    width: 67%;
+    max-height: 150px;
+    overflow-y: auto;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000; 
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+}
+  
+.info-cidade {
+    background-color: #f1f1f1;
+    padding: 10px;
+    border-radius: 5px;
+    height: 50px;
+    justify-content: center;
+    text-align: left;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+  
+
+.info-cidade h2 {
+    font-size: 18px;
+    color: #333;
+}
+  
+
+.info-cidade p {
+    font-size: 14px;
+    color: #666;
+}
+
+.cidades-encontradas.hidden {
+    display: none;
+    background-color: transparent;
+}
+  
+.cidades-encontradas.visible {
+    display: flex;
+}
+
+.erro {
+    font-size: 16px;
+    font-style: bold;
+    background-color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    color: black;
+    box-shadow: 1px;
+
+}

@@ -1,0 +1,25 @@
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #6482AD;
+}
+
+.nomeapp {
+    font-size: larger;
+ }
+ 
+.settings {
+    position: fixed;
+    top: 15px;
+    right: 42px;
+    width: 2em;
+    height: auto;
+    font-size: large;
+    border: 0;
+}
+
+.settings:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+}

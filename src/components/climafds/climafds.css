@@ -1,0 +1,87 @@
+.climafds {
+    margin-top: 2%;
+    background-color: white;
+    border: 2px solid #ccc;
+    border-radius: 15px;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 75vh;
+    margin-left: 20%;
+    margin-right: 20%;
+    max-width: 60%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.tituloclima {
+    position: relative;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+}
+
+.climasabado-imagem, .climadomingo-imagem {    
+    position: relative;
+    margin-top: 20px;
+    left: 3%;
+    width: 40%;
+}
+
+.imagemsabado, .imagemdomingo {
+    width: 160px;
+    height: 110px;
+    border-radius: 10%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.climasabado-content, .climadomingo-content {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    position: relative;
+    width: 50%;
+    left: 30%;
+    bottom: 110px;
+    margin-right: auto;
+}
+.climasabado {
+    margin-bottom: 40px;
+}
+.climasabado, .climadomingo {
+    margin-top: 2%;
+    background-color: white;
+    border: 2px solid #ccc;
+    border-radius: 15px;
+    padding: 10px 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    max-height: 250px;
+}
+
+.temperatura-max, .temperatura-min, .precipitacao {
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    color: black;
+}
+
+.estado {
+    font-size: 28px;
+    margin-top: 10px;
+    position: relative;
+    left: 37%;
+    bottom: 60px;
+    color: black;
+
+}
+
+.precipitacao {
+    position: relative;
+    top: 50px;
+    right: 42%;
+}
