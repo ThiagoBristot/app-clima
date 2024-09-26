@@ -57,11 +57,11 @@ export default class ClimaHoje extends Component {
 
     // Obtém o ícone do clima a partir da resposta da API
     const iconCode = weatherData.weather[0].icon; // Código do ícone fornecido pela API
-    const iconUrl = `https://rodrigokamada.github.io/openweathermap/images/${iconCode}_t.png`;
+    const iconUrl = `http://openweathermap.org/img/wn/${iconCode}@2x.png`;
 
     return (
       <section id="climahoje" className="climahoje">
-        <h2 className="tituloclima">Clima em {weatherData.name} hoje:</h2>
+        <h2 className="tituloclima">Clima em {weatherData.name} agora:</h2>
         
         {/* Exibe o ícone do clima */}
         <div className="climahoje-imagem">

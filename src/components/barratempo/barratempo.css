@@ -26,3 +26,8 @@
     cursor: pointer;
     color: black;
 }
+
+.barratempo li.ativo {
+    background-color: #6a91d6;;
+  }
+  

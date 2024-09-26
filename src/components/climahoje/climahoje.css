@@ -47,14 +47,13 @@
     justify-content: center;
     flex-direction: column;
     position: relative;
-    bottom: 50px;
+    bottom: 100px;
 }
 
 .temperaturahoje, .feelslikehoje {
     font-size: 24px;
     font-weight: bold;
     color: black;
-
 }
 
 .feelslikehoje {

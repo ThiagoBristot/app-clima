@@ -25,7 +25,7 @@ export default class Header extends Component {
   render() {
     return (
         <header id="header">
-            <h1 className="nomeapp">NOME</h1>
+            <h1 className="nomeapp">PrincipClima</h1>
             <button
                 style={{backgroundColor: 'transparent'}}
                 className="settings"

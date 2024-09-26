@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import Chart from "chart.js/auto";
 import "./climaamanha.css";
 
+import { FaArrowDown } from "react-icons/fa";
+import { FaArrowUp } from "react-icons/fa";
+import { BiDroplet } from "react-icons/bi";
 export default class ClimaAmanha extends Component {
   constructor(props) {
     super(props);
@@ -55,6 +58,7 @@ export default class ClimaAmanha extends Component {
           // Verifica se a data da entrada é "amanhã"
           if (entry.dt_txt.startsWith(tomorrowDateStr)) {
             totalPrecipitation += entry.rain?.['3h'] || entry.snow?.['3h'] || 0;
+            console.log(totalPrecipitation, precipitationData)
             temperatures.push(entry.main.temp);
             precipitationData.push(entry.rain?.['3h'] || entry.snow?.['3h'] || 0);
             timeLabels.push(entry.dt_txt.substring(11, 16)); // Pega apenas 'hh:mm'
@@ -88,11 +92,17 @@ export default class ClimaAmanha extends Component {
   renderCharts = () => {
     const { temperatures, timeLabels, precipitationData } = this.state.data;
 
+    // Verifique os dados
+    console.log('Temperatures:', temperatures);
+    console.log('TimeLabels:', timeLabels);
+    console.log('PrecipitationData:', precipitationData);
+
     // Verifique as referências dos canvas
     const tempCanvas = this.tempChartRef.current;
     const precipCanvas = this.precipitationChartRef.current;
 
     console.log('Temp Canvas:', tempCanvas);
+    console.log('Precipitation Canvas:', precipCanvas);
 
     // Apenas renderiza gráficos se os canvas estiverem disponíveis
     if (!tempCanvas && !precipCanvas) {
@@ -114,7 +124,7 @@ export default class ClimaAmanha extends Component {
     if (ctxTemp && this.state.showTempChart) {
       // Gráfico de Temperatura
       this.tempChart = new Chart(ctxTemp, {
-        type: 'bar',
+        type: 'line',
         data: {
           labels: timeLabels,
           datasets: [
@@ -122,8 +132,8 @@ export default class ClimaAmanha extends Component {
               label: 'Temperatura (°C)',
               data: temperatures,
               fill: false,
-              backgroundColor: 'blue',
-              borderColor: 'blue',
+              backgroundColor: 'red',
+              borderColor: 'red',
             },
           ],
         },
@@ -145,6 +155,47 @@ export default class ClimaAmanha extends Component {
         },
       });
     }
+
+    if (ctxPrecipitation && !this.state.showTempChart) {
+      // Gráfico de Precipitação
+      this.precipitationChart = new Chart(ctxPrecipitation, {
+        type: 'line',
+        data: {
+          labels: timeLabels,
+          datasets: [
+            {
+              label: 'Precipitação (mm)',
+              data: precipitationData,
+              backgroundColor: 'rgba(54, 162, 235, 0.5)',
+              borderColor: 'rgba(54, 162, 235, 1)',
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          scales: {
+            x: {
+              title: {
+                display: true,
+                text: 'Hora',
+              },
+            },
+            y: {
+              title: {
+                display: true,
+                text: 'Precipitação (mm)',
+              },
+            },
+          },
+        },
+      });
+    }
+  };
+
+  toggleChart = () => {
+    this.setState((prevState) => ({
+      showTempChart: !prevState.showTempChart,
+    }), this.renderCharts); // Redesenha os gráficos após alterar o estado
   };
 
   render() {
@@ -163,18 +214,27 @@ export default class ClimaAmanha extends Component {
         <h2 className="tituloclima">Clima em {data.cityName} amanhã:</h2>
         
         <div className="climaamanha-content">
-          <div className="temperaturaminamanha">Máx: {data.maxTemp}°C</div>
-          <div className="temperaturamaxamanha">Mín: {data.minTemp}°C</div>
+          <div className="temperaturaminamanha"><FaArrowUp/> {data.maxTemp}°C</div>
+          <div className="temperaturamaxamanha"><FaArrowDown/> {data.minTemp}°C</div>
+          <div className="precipitacaoamanha"> <BiDroplet/> {data.totalPrecipitation.toFixed(2)} mm</div>
         </div>
           <div className="imagemamanha">
             {/* Adicionar ícone do clima */}
             <img
-              src={`http://openweathermap.org/img/wn/${data.weathericon}.png`}
+              src={`http://openweathermap.org/img/wn/${data.weathericon}@2x.png`}
             />
           </div>
-        <div>
-          <canvas ref={this.tempChartRef} id="tempChart" width="400" height="200"/>
-        </div>
+          <div>
+            {showTempChart ? (
+              <canvas ref={this.tempChartRef} id="tempChart" width="400" height="200"/>
+            ) : (
+              <canvas ref={this.precipitationChartRef} id="precipitationChart" width="400" height="200"/>
+            )}
+            
+            <button className="toggle-chart-btn" onClick={this.toggleChart}>
+              {showTempChart ? "Mostrar Gráfico de Precipitação" : "Mostrar Gráfico de Temperatura"}
+            </button>
+          </div>
       </section>
     );
   }

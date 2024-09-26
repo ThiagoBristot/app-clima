@@ -46,8 +46,8 @@
     right: 15%;
     background-color: rgb(194, 214, 236);
     color: black;
-    width: 40%;
-    height: 55%;
+    width: 45%;
+    height: 65%;
     border-radius: 50%
 }
 
@@ -96,22 +96,32 @@
     flex-direction: column;
     width: 100%;
     height: auto;
-    border: 1px solid black;
     margin-bottom: 1%;
+    border-radius: 30px;
+    border-top: rgb(92, 91, 91) 1px solid;
+    box-shadow: 0 4px 8px rgba(0.5, 0, 0, 0.2);
+    background-color: #96cbff;
 }
 
 .dia-previsao ul {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     max-width: 100%;
-    gap: 10px;
+    transform: scale(0.96);
     overflow: hidden;
     transition: max-height 0.3s ease-in-out;
 }
 
 .dia-previsao.expandido ul {
     max-height: 500px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border-radius: 30px;
+    background-color: #7FA1C3;
+}
+
+.dia-previsao.expandido ul li {
+    margin-top: 2%;
 }
 
 .datadia, .tituloprev5d{
@@ -125,4 +135,12 @@
 .temp {
     position: relative;
     right: 15%;
+}
+
+.datadia, .temperatura15 {
+    margin-left: 2%;
+}
+
+.precipitacao {
+    font-style: bold;
 }
