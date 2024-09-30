@@ -100,23 +100,26 @@ header {
     }
 
     .clima15 {
-        width: 90%;
+        width: 100%;
         position: relative;
         right: 20%;
-        transform: scale(0.9);
+
     }
 
-    .index {
+    .dia-previsao.expandido {
         width: 100%;
+        z-index: 500px;
         overflow-x: auto;
         white-space: nowrap;
     }
 
-    .index ul {
+    .dia-previsao.expandido ul {
         display: flex;
-        list-style-type: none;
     }
 
+    .dia-previsao.expandido ul li {
+        align-items: center;
+    }
     .data {
         width: 100%;
         height: auto;
@@ -143,7 +146,7 @@ header {
     #tempChart, #precipitationChart {
         max-width: 100%;
         position: relative;
-        bottom: 100%;
+        bottom: 60%;
     }
     .temperatura15, .temperaturaexpandido, .datadia {
        font-size: 1em;
@@ -155,12 +158,7 @@ header {
 
     .toggle-chart-btn {
         position: relative;
-        bottom: 100%;
-    }
-
-    canvas {
-        height: 200px;
-        bottom: 30%;
+        bottom: 50%;
     }
 
     .searchbar {
@@ -205,3 +203,6 @@ header {
         left: 26%;
     }
 }
+
+
+    

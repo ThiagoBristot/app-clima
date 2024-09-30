@@ -49,13 +49,16 @@
     position: relative;
 }
 
-.temperaturahoje, .feelslikehoje {
+.temperaturahoje {
     font-size: 24px;
     font-weight: bold;
     color: black;
 }
 
 .feelslikehoje {
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
     position: relative;
 }
 

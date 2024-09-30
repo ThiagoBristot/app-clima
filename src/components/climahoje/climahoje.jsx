@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Chart from "chart.js/auto";
 import "./climahoje.css";
+import { FaThermometerHalf } from "react-icons/fa";
 
 export default class ClimaHoje extends Component {
   constructor(props) {
@@ -70,7 +71,7 @@ export default class ClimaHoje extends Component {
         
         {/* Exibe os dados do clima */}
         <div className="climahoje-content">
-          <div className="temperaturahoje">{weatherData.main.temp.toFixed(0)}°C</div>
+          <div className="temperaturahoje"><FaThermometerHalf/> {weatherData.main.temp.toFixed(0)}°C</div>
           <div className="feelslikehoje">Sensação térmica: {weatherData.main.feels_like.toFixed(0)}°C</div>
         </div>
       </section>

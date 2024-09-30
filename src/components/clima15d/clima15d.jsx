@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./clima15d.css";
 import { FaArrowDown, FaArrowUp, FaThermometerHalf } from "react-icons/fa";
 import { BiDroplet } from "react-icons/bi";
+import { color } from "chart.js/helpers";
 
 export default class Clima5d extends Component {
   constructor(props) {
@@ -185,7 +186,7 @@ export default class Clima5d extends Component {
                   </p>
                   {!isExpandido && (
                     <div className="precipitacao">
-                      <BiDroplet /> {totalPrecipitacao} mm 
+                      <strong><BiDroplet/> {totalPrecipitacao.toFixed(1)} mm </strong>
                     </div>
                   )}
                 </div>
