@@ -11,7 +11,7 @@
     overflow-y: auto; 
     margin-left: 20%;
     margin-right: 20%;
-    max-width: 60%;
+    max-width: 100%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     position: relative;
     transition: height 0.3s ease-in-out; /* Suaviza a transição de altura */
@@ -110,7 +110,7 @@
     max-width: 100%;
     transform: scale(0.96);
     overflow: hidden;
-    transition: max-height 0.3s ease-in-out;
+    transition: max-height 0.5s ease-in-out;
 }
 
 .dia-previsao.expandido ul {
@@ -122,6 +122,13 @@
 
 .dia-previsao.expandido ul li {
     margin-top: 2%;
+    display: inline-block;
+    border-radius: 8px;
+    transition: transform 0.2s;
+}
+
+.dia-previsao ul li:hover {
+    transform: scale(1.05);
 }
 
 .datadia, .tituloprev5d{
@@ -144,3 +151,4 @@
 .precipitacao {
     font-style: bold;
 }
+

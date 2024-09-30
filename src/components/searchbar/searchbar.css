@@ -1,12 +1,10 @@
 .searchbar {
     margin-bottom: 1%;
     margin-top: 1%;
-    max-width: 60%;
     display: flex;
-    justify-content: start;
+    justify-content: center;
     gap: 5px;
     position: relative;
-    left: 32%;
 }
 
 .searchbar input {
@@ -74,14 +72,14 @@
 
 #cidades-encontradas {
     position: absolute;
-    top: 90%;
-    left: 6%;
-    width: 42%;
+    top: 70%;
+    width: 40%;
     max-height: 150px;
     overflow-y: auto;
+    border-radius: 15px;
     background-color: white;
     border: 1px solid #ccc;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     z-index: 100; 
     flex-direction: column;
     gap: 10px;

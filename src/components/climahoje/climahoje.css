@@ -47,7 +47,6 @@
     justify-content: center;
     flex-direction: column;
     position: relative;
-    bottom: 100px;
 }
 
 .temperaturahoje, .feelslikehoje {

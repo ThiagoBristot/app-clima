@@ -214,8 +214,8 @@ export default class ClimaAmanha extends Component {
         <h2 className="tituloclima">Clima em {data.cityName} amanhã:</h2>
         
         <div className="climaamanha-content">
-          <div className="temperaturaminamanha"><FaArrowUp/> {data.maxTemp}°C</div>
-          <div className="temperaturamaxamanha"><FaArrowDown/> {data.minTemp}°C</div>
+          <div className="temperaturaminamanha"><FaArrowUp/> {data.maxTemp.toFixed(0)}°C</div>
+          <div className="temperaturamaxamanha"><FaArrowDown/> {data.minTemp.toFixed(0)}°C</div>
           <div className="precipitacaoamanha"> <BiDroplet/> {data.totalPrecipitation.toFixed(2)} mm</div>
         </div>
           <div className="imagemamanha">

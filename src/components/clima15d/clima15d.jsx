@@ -178,10 +178,10 @@ export default class Clima5d extends Component {
                 </h3>
                 <div className="temperatura15">
                   <p className="max">
-                    <FaArrowUp /> {maiorMax.toFixed(1)}°C
+                    <FaArrowUp /> {maiorMax.toFixed(0)}°C
                   </p>
                   <p className="min">
-                    <FaArrowDown /> {menorMin.toFixed(1)}°C
+                    <FaArrowDown /> {menorMin.toFixed(0)}°C
                   </p>
                   {!isExpandido && (
                     <div className="precipitacao">
@@ -210,7 +210,7 @@ export default class Clima5d extends Component {
                           </div>
                           <div className="temperaturaexpandido">
                             <p className="temp">
-                              <FaThermometerHalf /> {temp}°C
+                              <FaThermometerHalf /> {temp.toFixed(0)}°C
                             </p>
                           </div>
                         </li>

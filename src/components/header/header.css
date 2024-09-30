@@ -23,3 +23,185 @@ header {
     transform: scale(1.2);
     cursor: pointer;
 }
+@media (max-width: 1023px) and (min-width: 768px) {
+    .barratempo li {
+        width: 20%;
+        font-size: 1em;
+    }
+
+    .clima15, .climaamanha, .climahoje {
+        margin: 2% auto;
+        max-width: 90%;
+    }
+
+    .searchbar {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+    }
+
+    .searchbar input {
+        width: 100%;
+
+    }
+
+    .tooltip {
+        left: 15%;
+        top: 10%;
+    }
+
+    .clima15 li ul {
+        padding: 10px 40px;
+    }
+
+    .imagemamanha {
+        right: 20%;
+    }
+
+    .data {
+        width: 50%;
+        height: auto;
+    }
+
+    .temperatura15, .temperaturaexpandido, .datadia {
+        margin-left: 1%;
+    }
+
+    .locatual {
+        width: 2.5em;
+    }
+}
+
+/* Celular */
+@media (max-width: 767px) {
+    .barratempo {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    .barratempo ul {
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    .barratempo ul li {
+        width: 100%;
+        font-size: 1em;
+    }
+
+    .climaamanha, .climahoje {
+        width: 100%;
+        position: relative;
+        right: 5%;
+    }
+
+    .clima15 {
+        width: 90%;
+        position: relative;
+        right: 20%;
+        transform: scale(0.9);
+    }
+
+    .index {
+        width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .index ul {
+        display: flex;
+        list-style-type: none;
+    }
+
+    .data {
+        width: 100%;
+        height: auto;
+        left: 15%;
+    }
+
+    .imagemamanha {
+        right: 10%;
+        bottom: 20%;
+        width: 80px;
+    }
+
+    .climahoje-content {
+        width: 100%;
+        bottom: 0;
+        left: 0;
+    }
+
+    .climaamanha-content {
+        transform: scale(0.7);
+        bottom: 1%;
+    }
+
+    #tempChart, #precipitationChart {
+        max-width: 100%;
+        position: relative;
+        bottom: 100%;
+    }
+    .temperatura15, .temperaturaexpandido, .datadia {
+       font-size: 1em;
+    }
+
+    .mudatempamanha, .mudatemphoje {
+        left: 10%;
+    }
+
+    .toggle-chart-btn {
+        position: relative;
+        bottom: 100%;
+    }
+
+    canvas {
+        height: 200px;
+        bottom: 30%;
+    }
+
+    .searchbar {
+        margin: 2% auto;
+        width: 90%;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .searchbar input {
+        width: 80%;
+    }
+
+    .submitpesquisa {
+        font-size: 1.5em;
+        margin-top: 10px;
+    }
+
+    .LocAtual {
+        left: 10%;
+    }
+
+    .tooltip {
+        left: 10%;
+        top: 15%;
+    }
+
+    .climahoje-imagem {
+        right: 20%;
+    }
+
+    .estadohoje {
+        font-size: 1.5em;
+        bottom: 10%;
+    }
+
+    .erro {
+        font-size: 0.875em;
+    }
+
+    #cidades-encontradas {
+        left: 26%;
+    }
+}
