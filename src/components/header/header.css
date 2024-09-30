@@ -156,6 +156,11 @@ header {
         left: 10%;
     }
 
+    .dia-previsao.expandido ul {
+        overflow-x: scroll;
+        white-space: nowrap;
+    }
+
     .toggle-chart-btn {
         position: relative;
         bottom: 50%;
