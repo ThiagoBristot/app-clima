@@ -72,7 +72,7 @@ export default class Clima5d extends Component {
     let maiorMax = -Infinity;
     let menorMin = Infinity;
     let totalPrecipitacao = 0; // Variável para acumular a precipitação do dia
-    const precipitationData = [];
+    const precipitationData = []; // Armazena a precipitação por hora
   
     dia.forEach((previsao) => {
       const tempMax = previsao.main.temp_max;
@@ -87,21 +87,46 @@ export default class Clima5d extends Component {
         menorMin = tempMin;
       }
   
-      const chuva = previsao.rain?.['3h'] || 0;
-      const neve = previsao.snow?.['3h'] || 0;
+      const chuva = previsao.rain?.['3h'] || 0; // Chuva nas últimas 3 horas
+      const neve = previsao.snow?.['3h'] || 0; // Neve nas últimas 3 horas
   
-      // Adiciona a precipitação (chuva ou neve) ao total
       totalPrecipitacao += chuva + neve;
-      precipitationData.push(chuva + neve);
-      //console.log(`Precipitação para ${new Date(previsao.dt * 1000)}: Chuva: ${chuva}, Neve: ${neve}, Total Precipitação: ${totalPrecipitacao}`);
+  
+      const hora = new Date(previsao.dt * 1000).getHours(); // Extrair a hora da previsão
+      precipitationData.push({
+        hora,               // Hora da previsão
+        chuva,              // Quantidade de chuva em mm
+        neve,               // Quantidade de neve em mm
+        totalPrecipitacao: chuva + neve // Precipitação total (chuva + neve)
+      });
     });
   
     const mediaMax = totalMax / dia.length;
     const mediaMin = totalMin / dia.length;
-  
-    return { mediaMax, mediaMin, maiorMax, menorMin, totalPrecipitacao };
-  }; 
 
+    // Retorna o JSX para ser usado diretamente na renderização
+    const precipitacaoRender = precipitationData.map((item, index) => {
+      const chuva = item.chuva.toFixed(1); // Formata a quantidade de chuva
+      console.log(chuva)
+      return (
+        <p key={index} className="precipitacaoexp">
+          <BiDroplet /> {chuva} mm
+        </p>
+      );  
+    });
+    
+
+    return {
+      mediaMax,
+      mediaMin,
+      maiorMax,
+      menorMin,
+      totalPrecipitacao,
+      precipitationData,
+      precipitacaoRender // Retorna o JSX de precipitação
+    };
+  };
+  
   toggleExpandirDia = (index) => {
     this.setState((prevState) => {
       const diasExpandido = [...prevState.diasExpandido];
@@ -150,7 +175,8 @@ export default class Clima5d extends Component {
 
   render() {
     const { previsao5d, cidadeNome, erro, diasExpandido } = this.state;
-  
+    
+    
     if (erro) {
       return <p>{erro}</p>;
     }
@@ -177,6 +203,7 @@ export default class Clima5d extends Component {
                 <h3 className="datadia">
                   Previsão de {new Date(dia[0].dt * 1000).toLocaleDateString()} em {cidadeNome}:
                 </h3>
+                <strong>
                 <div className="temperatura15">
                   <p className="max">
                     <FaArrowUp /> {maiorMax.toFixed(0)}°C
@@ -184,13 +211,11 @@ export default class Clima5d extends Component {
                   <p className="min">
                     <FaArrowDown /> {menorMin.toFixed(0)}°C
                   </p>
-                  {!isExpandido && (
                     <div className="precipitacao">
-                      <strong><BiDroplet/> {totalPrecipitacao.toFixed(1)} mm </strong>
+                      <BiDroplet/> {totalPrecipitacao.toFixed(1)} mm
                     </div>
-                  )}
                 </div>
-  
+                </strong>  
                 {isExpandido && (
                   <ul>
                     {dia.map((previsao, subIndex) => {
@@ -198,7 +223,12 @@ export default class Clima5d extends Component {
                       const temp = previsao.main.temp;
                       const estado = previsao.weather?.[0]?.description || "Sem informação";
                       const icone = `http://openweathermap.org/img/wn/${previsao.weather?.[0]?.icon || '01d'}@2x.png`;
-  
+                      const { precipitacaoRender } = this.calcularMediaETemperaturasExtremas(dia); // Recuperar precipitação
+                      
+                      const chuva = previsao.rain?.['3h'] || 0;
+                      const neve = previsao.snow?.['3h'] || 0;
+                      const totalPrecipitacao = (chuva + neve).toFixed(1); // Soma chuva + neve e formata
+
                       return (
                         <li key={subIndex}>
                           <div className="data">
@@ -209,11 +239,18 @@ export default class Clima5d extends Component {
                               <img src={icone} alt={estado} />
                             </div>
                           </div>
+                          <strong>
+                          <div className="precipitacaoexpandido">
+                            <p className="precipitacaoexp">
+                              <BiDroplet/> {chuva.toFixed(1)} mm
+                            </p>
+                          </div>
                           <div className="temperaturaexpandido">
                             <p className="temp">
                               <FaThermometerHalf /> {temp.toFixed(0)}°C
                             </p>
                           </div>
+                          </strong>
                         </li>
                       );
                     })}
